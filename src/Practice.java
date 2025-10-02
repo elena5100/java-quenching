@@ -83,7 +83,18 @@ public class Practice {
      * @throws IllegalArgumentException if head is null
      */
     public static int biggestNumber(ListNode<Integer> head) {
-        return 0;
+        if (head == null) throw new IllegalArgumentException();
+
+        int max = head.data;
+        ListNode<Integer> current = head.next;
+    
+        while (current != null) {
+            if (current.data > max) {
+                max = current.data;
+            }
+            current = current.next;
+        }
+        return max;
     }
 
     /**
