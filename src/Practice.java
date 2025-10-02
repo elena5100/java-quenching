@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 public class Practice {
@@ -225,8 +227,22 @@ private static int listSum(ListNode<Integer> head) {
      * @return the sum of all the vertices
      */
     public static int graphSum(Vertex<Integer> start) {
-        return 0;
+
+        if (start == null) return 0; 
+        Set<Vertex<Integer>> visited = new HashSet<>();
+        return dfsSum(start, visited);
     }
+    
+    private static int dfsSum(Vertex<Integer> v, Set<Vertex<Integer>> visited) {
+        // already visited
+        if (!visited.add(v)) return 0; 
+        int sum = v.data;
+        for (Vertex<Integer> next : v.neighbors) {
+            sum += dfsSum(next, visited);
+        }
+        return sum;
+    
+        }
 
     /**
      * Returns the count of vertices in a graph that have an outdegree of 0.
@@ -237,6 +253,6 @@ private static int listSum(ListNode<Integer> head) {
      * @return the count of vertices with outdegree 0
      */
     public static int sinkCount(Vertex<Integer> start) {
-        return 0;
-    }
+       
+
 }
