@@ -193,8 +193,27 @@ public class Practice {
      * @return true if the sums are equal, false otherwise
      */
     public static boolean sumMatch(BinaryTreeNode<Integer> root, ListNode<Integer> head) {
-        return false;
+    int treeTotal = treeSum(root);   
+    int listTotal = listSum(head);  
+    return treeTotal == listTotal;
+}
+
+private static int treeSum(BinaryTreeNode<Integer> root) {
+    if (root == null) return 0; // empty tree = 0
+    return root.data + treeSum(root.left) + treeSum(root.right);
+}
+
+private static int listSum(ListNode<Integer> head) {
+    int sum = 0;
+    ListNode<Integer> current = head;
+    while (current != null) {
+        sum += current.data;
+        current = current.next;
     }
+    return sum;
+}
+
+
 
     /**
      * Returns the sum of all the vertices in a graph that are reachable from a given
