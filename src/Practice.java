@@ -253,6 +253,21 @@ private static int listSum(ListNode<Integer> head) {
      * @return the count of vertices with outdegree 0
      */
     public static int sinkCount(Vertex<Integer> start) {
-       
+        if (start == null) return 0;
+
+        int count = 0;
+        Set<Vertex<Integer>> seen = new HashSet<>();
+        Queue<Vertex<Integer>> skin1 = new LinkedList<>();
+        skin1.add(start);
+    
+        while (!skin1.isEmpty()) {
+            Vertex<Integer> node = skin1.poll();
+            if (!seen.add(node)) continue;
+    
+            if (node.neighbors == null || node.neighbors.isEmpty()) count++;
+            else skin1.addAll(node.neighbors);
+        }
+        return count;
+}
 
 }
